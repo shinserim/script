@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헤더메뉴+탭메뉴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body {
+            line-height: 1;
+            color: #333;
+
+        }
+
+        header {
+            width: 100%;
+            height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #ffffffb5;
+            backdrop-filter: blur(10px);
+            /* 블러처리해줌 */
+        }
+
+        header .inner {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            align-items: center;
+            height: 100%;
+            /* 가로,높이값 있어야 수직정렬 가능(flex사용시) */
+        }
+
+        header .inner nav {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background-color: rgb(255, 255, 255);
+            display: none;
+        }
+        header .menu_icon img {
+            cursor: pointer;
+        }
+        header .inner nav li {
+            padding: 20px;
+            
+        }
+
+        header .inner img {
+            width: 40px;
+        }
+        .main_visual {
+            height: 100vh;
+        }
+        .main_visual img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .cont01 {
+            width: calc(100% - 40px);
+            margin: 100px auto;
+        }
+        .cont01 .tab_menu {
+            margin-bottom: 30px;
+        }
+        .cont01 .tab_menu li {
+            display: inline-block;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .cont01 .tab_menu li:first-child {
+            border-bottom: #333 solid 1px;
+        }
+
+        .cont01 .tab_cont {
+            height: 450px;
+        }
+        .cont01 .tab_cont img {
+            border-radius: 5px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+     </style>
+</head>
+
+<body>
+    <header>
+        <div class="inner">
+            <h1>
+                <a href="#">
+                    <img src="img/icons8-metamask-logo-50.png" alt="" />
+                </a>
+            </h1>
+            <div class="menu_icon">
+                <img id="menu_icon" src="img/icons8-menu-rounded-50.png" alt="" />
+            </div><!-- .manu_icon end -->
+            <nav id="gnb">
+                <ul>
+                    <li><a href="#">새로나온책</a></li>
+                    <li><a href="#">베스트셀러</a></li>
+                    <li><a href="#">어린이도서</a></li>
+                    <li><a href="#">수험정보센터</a></li>
+                    <li><a href="#">영광문화</a></li>
+                </ul>
+            </nav>
+        </div><!-- .inner -->
+    </header>
+    <section class="main_visual">
+        <img src="img/espresso-g24db1cd54_1920.jpg" alt="" />
+    </section><!-- .main_visual end -->
+    <section class="cont01">
+        <ul class="tab_menu">
+            <li>베스트셀러</li>
+            <li>기획테마</li>
+            <li>분야별시간</li>
+        </ul><!-- .tab_menu end -->
+        <div class="tab_cont">
+            <img src="img/red-leaves-g0cf4f39c2_1920.jpg" alt="" />
+        </div><!-- .tab_cont end -->
+    </section><!-- .cont01 end -->
+
+    <script>
+       let menuIcon = document.getElementById('menu_icon');
+       let hdNav = document.getElementById('gnb');
+       hdNav.style.display = 'none'
+       //현재 디스플레이 속성값 알려줌
+    
+        menuIcon.onclick = function() {
+            if (hdNav.style.display =='none') {
+            hdNav.style.display = 'block'
+            } else {
+                hdNav.style.display = 'none'
+            }
+        }
+
+        let cont = document.getElementsByClassName('cont01')[0];
+        let contImg = cont.getElementsByTagName('img')[0];
+        let contMenu = cont.getElementsByTagName('li');
+        let i = 0;
+
+        for (i; i < contMenu.length; i++) {
+            let num = i + 1;
+            let imgChange = 'img/img' + num + '.jpg';
+            contMenu[i].onclick = function () {
+                console.log(i)
+                contImg.src = imgChange;
+
+                contMenu[0].style.borderBottom = '1px solid #fff';
+                contMenu[1].style.borderBottom = '1px solid #fff';
+                contMenu[2].style.borderBottom = '1px solid #fff';
+
+                this.style.borderBottom = '1px solid #333'
+        }//contMenu[i].onclick
+    }//for
+    </script>
+</body>
+
+</html>
